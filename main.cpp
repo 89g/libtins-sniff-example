@@ -20,8 +20,9 @@ bool callbackfunc(const PDU &pdu)
     // Retrive the content (payload)
     for(const auto &payload: raw.payload())
     {
-        cout << payload << endl;
+        cout << payload;
     }
+    cout << endl;
 
     return true;
 }
@@ -37,6 +38,7 @@ int main(int argc, char **argv)
     // Sniff on the provided interface in promiscuos mode
     SnifferConfiguration config;
     config.set_promisc_mode(true);
+    config.set_immediate_mode(true);
     // Only capture TCP packets sent to port 80
     config.set_filter("tcp and dst port 80");
     Sniffer sniffer(argv[1], config);
