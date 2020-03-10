@@ -1,10 +1,12 @@
 DEBUG = 0
-CC = gcc
-EXEC = main
+CPP = gcc
+EXEC = libtins_sniff_example
 CFLAGS = -Wall -std=c++11
 LDFLAGS = -Wl,-rpath,/usr/local/lib
-COMMON +=
-LDLIBS +=
+COMMON += -I/usr/local/include
+LDLIBS += -ltins
+
+UNAME := $(shell uname)
 
 OBJS = main.o
 
@@ -17,10 +19,10 @@ endif
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) $(COMMON) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CPP) $(COMMON) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 
-%.o: %.c
-	$(CC) $(COMMON) $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	$(CPP) $(COMMON) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	rm -rf $(EXEC) $(OBJS)

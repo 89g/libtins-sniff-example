@@ -1,11 +1,15 @@
 #include <iostream>
+#include <fstream>
 
 #include <tins/tins.h>
 
 using std::cout;
 using std::endl;
+using std::ofstream;
 
 using namespace Tins;
+
+ofstream outputfile;
 
 bool callbackfunc(const PDU &pdu)
 {
@@ -21,6 +25,7 @@ bool callbackfunc(const PDU &pdu)
     for(const auto &payload: raw.payload())
     {
         cout << payload;
+        //outputfile << payload;
     }
     cout << endl;
 
@@ -42,6 +47,7 @@ int main(int argc, char **argv)
     // Only capture TCP packets sent to port 80
     config.set_filter("tcp and dst port 80");
     Sniffer sniffer(argv[1], config);
+    outputfile.open("output.txt", ofstream::out | ofstream::app);
 
     // Start the capture
     sniffer.sniff_loop(callbackfunc);
