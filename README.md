@@ -10,3 +10,6 @@ macOS:
 ```
 $ g++ main.cpp -o main -std=c++11 -I/usr/local/include -L/usr/local/Cellar/libtins/4.2_1/lib -ltins
 ```
+
+# Redirect cout to file
+https://stackoverflow.com/questions/10150468/how-to-redirect-cin-and-cout-to-files

@@ -6,10 +6,9 @@
 using std::cout;
 using std::endl;
 using std::ofstream;
+using std::streambuf;
 
 using namespace Tins;
-
-ofstream outputfile;
 
 bool callbackfunc(const PDU &pdu)
 {
@@ -47,7 +46,11 @@ int main(int argc, char **argv)
     // Only capture TCP packets sent to port 80
     config.set_filter("tcp and dst port 80");
     Sniffer sniffer(argv[1], config);
+    // Open output file
+    ofstream outputfile;
     outputfile.open("output.txt", ofstream::out | ofstream::app);
+    streambuf *coutbuf = cout.rdbuf(); // save lod buf
+    cout.rdbuf(outputfile.rdbuf()); // redirect std::cout to output.txt
 
     // Start the capture
     sniffer.sniff_loop(callbackfunc);
