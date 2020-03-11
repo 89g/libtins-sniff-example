@@ -1,5 +1,5 @@
 DEBUG = 0
-CPP = gcc
+CPP = g++
 EXEC = libtins_sniff_example
 CFLAGS = -Wall -std=c++11
 LDFLAGS = -Wl,-rpath,/usr/local/lib
@@ -12,6 +12,12 @@ OBJS = main.o
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -O0 -g -DDEBUG=1
+endif
+
+ifeq ($(UNAME), Darwin)
+LDFLAGS += -L/usr/local/Cellar/libtins/4.2_1/lib
+else
+LDFLAGS += -L/uusr/local/lib
 endif
 
 .PHONY: all clean
