@@ -1,15 +1,30 @@
 # libtins-sniff-example
-Sniff TCP packets example with libtins
+Sniff TCP packets example on port 80 with libtins.
 
 # Compile
+Before compiling, install [libtins](http://libtins.github.io/download/).
+
+After you have installed libtins, type this command (for Unix system):
 ```
-$ g++ main.cpp -o main -std=c++11 -Wl,-rpath,/usr/local/lib -ltins
+$ make
 ```
 
-macOS:
+# Run (with Testing)
+Type this command to run (need `sudo` privilege):
 ```
-$ g++ main.cpp -o main -std=c++11 -I/usr/local/include -L/usr/local/Cellar/libtins/4.2_1/lib -ltins
+$ sudo ./libtins_sniff_example <network interface>
 ```
+
+Open another terminal and type these:
+```
+$ curl google.com
+$ curl wololo.net
+```
+
+
+
+To stop the program, press `Ctrl+C`.
+The TCP payload is in `output.txt`.
 
 # Redirect cout to file
 https://stackoverflow.com/questions/10150468/how-to-redirect-cin-and-cout-to-files

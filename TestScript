@@ -1,0 +1,64 @@
+First run the executable by this command:
+```
+$ sudo ./libtins_sniff_example <network interface>
+```
+
+Then open another terminal and type the following commands:
+```
+$ curl google.com
+$ curl wololo.net
+```
+After typing the above commands, kill `libtins_sniff_example` by pressing `Ctrl+C`.
+You should the similar content in output.txt like below:
+```
+GET / HTTP/1.1^M
+Host: google.com^M
+User-Agent: curl/7.64.0^M
+Accept: */*^M
+^M
+
+GET / HTTP/1.1^M
+Host: wololo.net^M
+User-Agent: curl/7.64.0^M
+Accept: */*^M
+^M
+```
+
+Next, run the executable again:
+```
+$ sudo ./libtins_sniff_example <network interface>
+```
+
+Then open another terminal and type the following commands:
+```
+$ curl ithome.com
+$ curl www.ncu.edu.tw
+```
+Kill `libtins_sniff_example` by pressing `Ctrl+C` after typing the above commands.
+
+Now your output.txt should have the similar contents below:
+```
+GET / HTTP/1.1^M
+Host: google.com^M
+User-Agent: curl/7.64.0^M
+Accept: */*^M
+^M
+
+GET / HTTP/1.1^M
+Host: wololo.net^M
+User-Agent: curl/7.64.0^M
+Accept: */*^M
+^M
+
+GET / HTTP/1.1^M
+Host: ithome.com^M
+User-Agent: curl/7.64.0^M
+Accept: */*^M
+^M
+
+GET / HTTP/1.1^M
+Host: www.ncu.edu.tw^M
+User-Agent: curl/7.64.0^M
+Accept: */*^M
+^M
+```

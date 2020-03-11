@@ -31,3 +31,6 @@
 *.out
 *.app
 libtins_sniff_example
+
+# outputs
+*.txt
